@@ -7,7 +7,7 @@ let prevVol;
 
 async function getSongs(folder) {
     currFolder = folder;
-    let a = await fetch(`${folder}/`)
+    let a = await fetch(`/${folder}/`)
     let response = await a.text();
     // console.log(response);
 
@@ -68,7 +68,7 @@ async function getSongs(folder) {
 
 
 async function displayAllAlbums() {
-    let a = await fetch(`songs/`)
+    let a = await fetch(`/songs/`)
     let response = await a.text();
     let cardContainer = document.querySelector(".cardContainer");
     // console.log(response);
@@ -81,7 +81,7 @@ async function displayAllAlbums() {
         const e = array[index];
         if (e.href.includes("/songs/") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/")[4];
-            let a = await fetch(`songs/${folder}/info.json`)
+            let a = await fetch(`/songs/${folder}/info.json`)
             let response = await a.json();
             // console.log(response)
             cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card">
@@ -183,7 +183,7 @@ async function main() {
 
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
 
-        
+
         if (currentSong.currentTime == currentSong.duration) {
             let index = songs.indexOf(currentSong.src.split(`/${currFolder}/`)[1]);
             console.log(index);
@@ -260,7 +260,7 @@ async function main() {
     })
 
     //playing next songs if it has ended
-   
+
 
 
 }
