@@ -68,7 +68,7 @@ async function getSongs(folder) {
 
 
 async function displayAllAlbums() {
-    let a = await fetch(`http://127.0.0.1:5500/songs/`)
+    let a = await fetch(`/songs/`)
     let response = await a.text();
     let cardContainer = document.querySelector(".cardContainer");
     // console.log(response);
@@ -81,7 +81,7 @@ async function displayAllAlbums() {
         const e = array[index];
         if (e.href.includes("/songs/")) {
             let folder = e.href.split("/")[4];
-            let a = await fetch(`http://127.0.0.1:5500/songs/${folder}/info.json`)
+            let a = await fetch(`/songs/${folder}/info.json`)
             let response = await a.json();
             // console.log(response)
             cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folder}" class="card">
